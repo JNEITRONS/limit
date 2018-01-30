@@ -1,5 +1,3 @@
-minetest.register_privilege("limit", "Limiting player interaction with world.")
-
 sfinv.register_page("limit:limit_gui", {
     title = "Limit Gui",
     get = function(self, player, context)
