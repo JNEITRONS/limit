@@ -7,7 +7,6 @@ inventory_plus.register_button(player,"limit","Limit Gui")
 end
 end)
 
--- each time a player clicks an inventory button, this is called
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 ---Local hosts
