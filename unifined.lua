@@ -57,6 +57,9 @@ name = "null"
 end
 
 ----Callbacks
+    if fields.limit then
+           inventory_plus.set_inventory_formspec(player, limit.get_formspec_2(player))         
+         end
     if privs_kick and fields.kick_player then
         inventory_plus.set_inventory_formspec(player, limit.get_formspec_2(player))
  minetest.kick_player(name, reason)
