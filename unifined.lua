@@ -57,24 +57,23 @@ name = "null"
 end
 
 ----Callbacks
-    if fields.limit then
-        inventory_plus.set_inventory_formspec(player, limit.get_formspec_2(player))
-end
-
     if privs_kick and fields.kick_player then
         inventory_plus.set_inventory_formspec(player, limit.get_formspec_2(player))
  minetest.kick_player(name, reason)
+    minetest.chat_send_player(player:get_player_name(), name.." kicked.")
     end
 
     if privs_ban and fields.ban_player then
     inventory_plus.set_inventory_formspec(player, limit.get_formspec_2(player))
     minetest.ban_player(name, reason)
+    minetest.chat_send_player(player:get_player_name(), name.." banned.")
 end
 
     if fields.limit_player then
     inventory_plus.set_inventory_formspec(player, limit.get_formspec_2(player))
     minetest.set_player_privs(name, {})
     minetest.chat_send_player(name, pl.." limit you for: "..reason)
+    minetest.chat_send_player(player:get_player_name(), name.." limited.")
 end
 end)
  
