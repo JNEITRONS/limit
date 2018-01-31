@@ -4,12 +4,10 @@ sfinv.register_page("limit:limit_gui", {
         local players = {}
         context.limit_players = players
 
-        -- Using an array to build a formspec is considerably faster
         local formspec = {
             "textlist[0.1,0.1;7.8,2;playerlist;"
         }
 
-        -- Add all players to the text list, and to the players list
         local is_first = true
         for _ , player in pairs(minetest.get_connected_players()) do
             local player_name = player:get_player_name()
@@ -29,12 +27,11 @@ sfinv.register_page("limit:limit_gui", {
         formspec[#formspec + 1] = "button[4.1,3.3;2,1;limit;Limit]"
         formspec[#formspec + 1] = "button[6.1,3.3;2,1;lkick;Kick Limit]"
 
-        -- Wrap the formspec in sfinv's layout (ie: adds the tabs and background)
         return sfinv.make_formspec(player, context,
                 table.concat(formspec, ""), true)
     end,
 on_player_receive_fields = function(self, player, context, fields)
-    -- text list event,  check event type and set index if selection changed
+
     local reason = tostring(fields.reason)
     if fields.kick and reason == "" or fields.jail and reason == "" then
     reason = "Kicked by staff."
@@ -54,7 +51,7 @@ end
             context.limit_selected_idx = event.index
         end
 
-    -- Kick button was pressed
+
     elseif fields.kick then
         local player_name = context.limit_players[context.limit_selected_idx]
         local privs = minetest.get_player_privs(player:get_player_name()).kick
@@ -82,7 +79,7 @@ end
         minetest.set_player_privs(player_name, {})
         minetest.chat_send_player(player:get_player_name(), player_name.." limited.")
         end
-    -- Ban button was pressed
+
     elseif fields.ban then
         local privs = minetest.get_player_privs(player:get_player_name()).ban
         local player_name = context.limit_players[context.limit_selected_idx]
