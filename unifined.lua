@@ -1,7 +1,7 @@
 local limit = {}
 
 minetest.register_on_joinplayer(function(player)
-    local limit_can = minetest.check_player_privs(player, {limit=true})
+    local limit_can = minetest.check_player_privs(player, {limit=true}) or minetest.check_player_privs(player, {kick=true}) or minetest.check_player_privs(player, {ban=true})
     if limit_can then
 inventory_plus.register_button(player,"limit","Limit Gui")
 end
@@ -85,12 +85,10 @@ local formspec = "size[6,5]"
     .."button[0,0;2,1;main;Back]"
     .."button[2,0;2,1;craft;Craft]"
     .."field[0.5,1.8;5.5,1;player_name;Name;]"
-    --.."dropdown[0.2,1.5;5.5,1;player_name;;1]"
     .."field[0.5,3;5.5,1;reason;Reason;]"
     .."button_exit[2,4;2,1;ban_player;Ban]"
     .."button_exit[4,4;2,1;kick_player;Kick]"
     .."button_exit[0,4;2,1;limit_player;Limit]"
-    --.."dropdown[2.4,0.75;5.2,1;receiver;"
 if minetest.get_modpath("bags") then
 formspec = formspec
       .."button[4,0;2,1;bags;Bags]"
