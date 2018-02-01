@@ -1,6 +1,6 @@
  minetest.register_chatcommand("limit", {
 	params = "<name>",
-	description = "Limiting player",
+	description = "Limiting player interaction with world",
 	privs = {limit=true},
 	func = function(name, param)
 	local player = minetest.get_player_by_name(param)
