@@ -33,7 +33,7 @@ sfinv.register_page("limit:limit_gui", {
 on_player_receive_fields = function(self, player, context, fields)
 
     local reason = tostring(fields.reason)
-    if fields.kick and reason == "" or fields.jail and reason == "" then
+    if fields.kick and reason == "" then
     reason = "Kicked by staff."
 end
     if fields.ban and reason == "" then
@@ -42,8 +42,8 @@ end
     if fields.limit and reason == "" then
     reason = "Limited by staff."  
 end
-    if fields.jail then
-    reason = "Jailed by staff."
+    if fields.lkick then
+    reason = "Limited by staff."
 end
     if fields.playerlist then
         local event = minetest.explode_textlist_event(fields.playerlist)
