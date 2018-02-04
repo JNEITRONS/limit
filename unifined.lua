@@ -1,7 +1,7 @@
 local limit = {}
 
 minetest.register_on_joinplayer(function(player)
-    local limit_can = minetest.check_player_privs(player, {limit=true}) or minetest.check_player_privs(player, {kick=true}) or minetest.check_player_privs(player, {ban=true})
+    local limit_can = minetest.check_player_privs(player, {limit=true})
     if limit_can then
 inventory_plus.register_button(player,"limit","Limit Gui")
 end
@@ -76,6 +76,7 @@ end
     minetest.set_player_privs(name, {})
     minetest.chat_send_player(name, pl.." limit you for: "..reason)
     minetest.chat_send_player(player:get_player_name(), name.." limited.")
+    print ("[Limit Gui] "..player:get_player_name()" limit "..player_name)
 end
 end)
  
@@ -95,5 +96,6 @@ formspec = formspec
 end
     return formspec
 end
+
 
 
